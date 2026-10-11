@@ -1,4 +1,4 @@
-import { pgTable, text, jsonb, timestamp, primaryKey } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, primaryKey } from "drizzle-orm/pg-core";
 
 // One row per saved app key (trades, profile, theme, ...) per Appwrite user.
 export const userData = pgTable(
@@ -6,7 +6,7 @@ export const userData = pgTable(
   {
     userId: text("user_id").notNull(),
     key: text().notNull(),
-    value: jsonb().notNull(),
+    value: text().notNull(),
     updatedAt: timestamp("updated_at").defaultNow().notNull(),
   },
   (t) => [primaryKey({ columns: [t.userId, t.key] })],
